@@ -1,22 +1,25 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { useUserStore } from "../stores/user";
 
 const histories = ref(["😀", "😥", "🤑", "😴", "🍺", "🍚", "☕"]);
+
+const userStore = useUserStore();
 </script>
 
 <template>
     <div class="wrapper">
         <div class="status">
-            <div class="emoji">😀</div>
-            <div class="text">배고파요</div>
+            <div class="emoji">{{ userStore.user.emoji }}</div>
+            <div class="text">{{ userStore.user.description }}</div>
         </div>
         <div class="histories">
             <div class="history" v-for="history of histories">
                 {{ history }}
             </div>
-            <div class="history">
+            <router-link to="/change-status" tag="div" class="history">
                 <img src="../img/Vector.svg" alt="추가" />
-            </div>
+            </router-link>
         </div>
     </div>
 </template>

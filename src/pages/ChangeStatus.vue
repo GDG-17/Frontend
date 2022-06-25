@@ -57,6 +57,8 @@ async function submit(_emoji: string, _description: string) {
         description: _description,
         expiredAt: moment().add(1, "day").toDate(),
     });
+
+    await userStore.refreshStatus(userStore.user.userId!);
 }
 </script>
 

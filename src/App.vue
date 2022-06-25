@@ -9,10 +9,10 @@ const dialogStore = useDialogStore();
 const userStore = useUserStore();
 
 const router = useRouter();
-// router.isReady().then(() => {
-//     if (router.currentRoute.value.query.userId) userStore.refreshStatus(router.currentRoute.value.query.userId as string);
-// });
-userStore.refreshStatus("1");
+router.isReady().then(() => {
+    if (router.currentRoute.value.query.userId) userStore.refreshStatus(router.currentRoute.value.query.userId as string);
+    else userStore.refreshStatus("1");
+});
 </script>
 
 <template>
