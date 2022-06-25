@@ -1,12 +1,14 @@
 import axios from "axios";
 import { defineStore } from "pinia";
 
-export interface IUser {
-    userId: string;
-    description: string;
+export interface IStatus {
+    userId: number;
     emoji: string;
-    profileImage: string;
+    description: string;
+    imageProfile: string;
     expiredAt: Date;
+}
+export interface IUser extends IStatus {
     interesting: boolean;
 }
 
@@ -22,14 +24,17 @@ export const useUserStore = defineStore("userStore", {
         noticeList: [] as INotice[],
     }),
     actions: {
-        async updateFriendList() {
+        async refreshFriendList() {
             this.friendList = (await axios.get("/apis/friends?userId=test")).data as IUser[];
         },
-        async updateNoticeList() {
-            this.friendList = (await axios.get("/apis/users/notification?userId=test")).data as IUser[];
+        async refreshNoticeList() {
+            this.noticeList = (await axios.get("/apis/users/notification?userId=test")).data as INotice[];
         },
         async getSearchFriendList() {
             return (await axios.get("/apis/friends?userId=test")).data as IUser[];
+        },
+        async updateStatus(status: IStatus) {
+            return (await axios.patch("/apis/users/me", status)).data as IUser[];
         },
     },
 });

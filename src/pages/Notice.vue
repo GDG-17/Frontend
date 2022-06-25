@@ -1,8 +1,20 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useUserStore } from "../stores/user";
+import NoticeItem from "../components/user/NoticeItem.vue";
+
+const userStore = useUserStore();
+userStore.refreshNoticeList();
+</script>
 
 <template>
     <div class="notice">
-        <div class="notice__cta-button">+</div>
+        <div class="notice__header">
+            <div class="notice__header__logo">앱 이름</div>
+            <div class="notice__header__actions"></div>
+        </div>
+        <div class="notice__list">
+            <NoticeItem :notice="notice" v-for="notice of userStore.noticeList"></NoticeItem>
+        </div>
     </div>
 </template>
 
@@ -12,7 +24,6 @@
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 
     width: 100%;
@@ -21,23 +32,20 @@
 
     margin: 0 auto;
 
-    background-color: $title-gray;
-
-    .notice__cta-button {
-        position: absolute;
-        right: 40px;
-        bottom: 40px;
-
-        width: 50px;
-        height: 50px;
+    .notice__header {
+        width: 100%;
 
         display: flex;
-        justify-content: center;
         align-items: center;
 
-        background-color: $sub-dark-gray;
+        height: 80px;
 
-        border-radius: 100%;
+        padding: 10px;
+
+        background-color: $primary-color;
+    }
+    .notice__list {
+        width: 100%;
     }
 }
 </style>

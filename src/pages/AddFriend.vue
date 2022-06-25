@@ -2,6 +2,8 @@
 import { ref } from "vue";
 import UserItem from "../components/user/UserItem.vue";
 import { IUser, useUserStore } from "../stores/user";
+import AppButton from "../components/app/button/AppButton.vue";
+import AppSmallButton from "../components/app/button/AppSmallButton.vue";
 const userStore = useUserStore();
 
 const searchFriendList = ref([] as IUser[]);
@@ -19,7 +21,9 @@ async function getSearchFriendList() {
             <div class="add-friend__header__actions"></div>
         </div>
         <div class="add-friend__list">
-            <UserItem :user="user" v-for="user of searchFriendList"></UserItem>
+            <UserItem :user="user" v-for="user of searchFriendList">
+                <AppSmallButton>초대하기</AppSmallButton>
+            </UserItem>
         </div>
         <div class="add-friend__footer">상태 설정</div>
     </div>

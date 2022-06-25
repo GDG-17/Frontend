@@ -5,10 +5,8 @@ import UserItem from "../components/user/UserItem.vue";
 import { IUser, useUserStore } from "../stores/user";
 import EmojiSelector from "../components/EmojiSelector.vue";
 
-const friends = ref([] as IUser[]);
-
 const userStore = useUserStore();
-userStore.updateFriendList();
+userStore.refreshFriendList();
 </script>
 
 <template>
@@ -58,6 +56,10 @@ userStore.updateFriendList();
         padding: 10px;
 
         background-color: $primary-color;
+    }
+
+    .home__list {
+        width: 100%;
     }
 
     .home__cta-button {

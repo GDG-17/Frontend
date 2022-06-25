@@ -12,6 +12,11 @@ const routes = [
         name: "AddFriend",
         component: () => import("./pages/AddFriend.vue"),
     },
+    {
+        path: "/notice",
+        name: "Notice",
+        component: () => import("./pages/Notice.vue"),
+    },
 ];
 
 const router = createRouter({
