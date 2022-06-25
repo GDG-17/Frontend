@@ -25,7 +25,7 @@ async function addFriend(targetUserId: string) {
     <div class="add-friend">
         <div class="add-friend__header">
             <router-link to="/" tag="div" class="add-friend__header__actions">
-                <AppIcon color="#FFFFFF" :path="mdiArrowLeft"></AppIcon>
+                <AppIcon color="#000000" :path="mdiArrowLeft"></AppIcon>
             </router-link>
             <div class="add-friend__header__title">친구 추가하기</div>
         </div>
