@@ -3,16 +3,21 @@ import { IUser } from "../../stores/user";
 
 interface Props {
     user: IUser;
+    isHideDescription?: boolean;
+    isShowProfileImage?: boolean;
 }
 const props = defineProps<Props>();
 </script>
 
 <template>
     <div class="user-item">
-        <div class="user-item__emoji">😀</div>
+        <div class="user-item__emoji" v-if="!isShowProfileImage">😀</div>
+        <div class="user-item__emoji" v-else>
+            <img :src="user.profileImage" alt="" />
+        </div>
         <div class="user-item__profile">
             <h3 class="user-item__profile__name">{{ user.userName }}</h3>
-            <p class="user-item__profile__description">{{ user.description }}</p>
+            <p class="user-item__profile__description" v-if="!isHideDescription">{{ user.description }}</p>
         </div>
         <div class="user-item__actions">
             <slot></slot>
@@ -33,6 +38,10 @@ const props = defineProps<Props>();
 
     &__emoji {
         @include emoji-box();
+
+        img {
+            width: 100%;
+        }
     }
 
     &__profile {

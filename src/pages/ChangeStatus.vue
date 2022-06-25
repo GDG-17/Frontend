@@ -9,6 +9,7 @@ import AppIcon from "../components/app/AppIcon.vue";
 import { mdiArrowLeft, mdiCheck, mdiClockPlusOutline, mdiClose, mdiEmoticonHappyOutline } from "@mdi/js";
 import moment from "moment";
 import { computed } from "@vue/reactivity";
+import SlideTransition from "../transitions/SlideTransition.vue";
 
 const userStore = useUserStore();
 
@@ -68,7 +69,7 @@ async function submit(_emoji: string, _description: string) {
             <router-link to="/" tag="div" class="change-status__header__actions1"> <AppIcon color="#000000" :path="mdiClose"></AppIcon> </router-link>
             <div class="change-status__header__title">상태 설정</div>
             <div class="change-status__header__actions2">
-                <AppIcon color="#000000" :path="mdiCheck" @click="submit(emoji, description)"></AppIcon>
+                <AppIcon color="#000000" :path="mdiCheck" @click="submit(emoji, description)" style="cursor: pointer"></AppIcon>
             </div>
         </div>
         <div class="change-status__list">
@@ -92,7 +93,16 @@ async function submit(_emoji: string, _description: string) {
             <h2>유저 이름의 경우</h2>
             <NoticeItem :notice="item" v-for="item of templateItemList" @click="submit(item.emoji, item.text)"></NoticeItem>
         </div>
-        <AppBottomSheet v-model="isShowEmojiSelector"> <EmojiSelector @click-emoji="emoji = $event"></EmojiSelector></AppBottomSheet>
+        <SlideTransition>
+            <AppBottomSheet v-model="isShowEmojiSelector">
+                <EmojiSelector
+                    @click-emoji="
+                        emoji = $event;
+                        isShowEmojiSelector = false;
+                    "
+                ></EmojiSelector
+            ></AppBottomSheet>
+        </SlideTransition>
     </div>
 
     <div class="change-status--time" v-else>

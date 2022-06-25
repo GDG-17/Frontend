@@ -96,13 +96,13 @@ const filteredEmojis = computed(() => {
 .emoji-selector {
     padding: 30px 20px;
     border-radius: 24px 24px 0 0;
-    background-color: $charcoal;
+    background-color: white;
 
     input {
         @include input;
         width: 100%;
         height: 44px;
-        background: $dark-gray;
+        background: #e6e6e6;
         border-radius: 10px;
         font-family: "Roboto";
         font-style: normal;
@@ -117,7 +117,7 @@ const filteredEmojis = computed(() => {
         background-position: 12px center;
 
         &::placeholder {
-            color: $white;
+            color: #313439;
         }
     }
     .frequent {

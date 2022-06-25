@@ -3,9 +3,10 @@ import { ref } from "vue";
 import UserItem from "../components/user/UserItem.vue";
 import { IUser, useUserStore } from "../stores/user";
 import AppSmallButton from "../components/app/button/AppSmallButton.vue";
-import { mdiArrowLeft } from "@mdi/js";
+import { mdiArrowLeft, mdiCheck } from "@mdi/js";
 import AppIcon from "../components/app/AppIcon.vue";
 import AppInput from "../components/app/input/AppInput.vue";
+import AppFlexibleButton from "../components/app/button/AppFlexibleButton.vue";
 const userStore = useUserStore();
 
 const searchFriendList = ref([] as IUser[]);
@@ -29,10 +30,14 @@ async function addFriend(targetUserId: string) {
             </router-link>
             <div class="add-friend__header__title">친구 추가하기</div>
         </div>
-        <AppInput style="width: 100%; margin-bottom: 10px" v-model="search" button-text="검색" @click-button="getSearchFriendList(search)"></AppInput>
+        <AppInput style="width: 100%; margin-bottom: 10px" v-model="search" @click-button="getSearchFriendList(search)">
+            <AppFlexibleButton @click="getSearchFriendList(search)" style="margin-left: 30px; width: 40px; height: 40px; border-radius: 7px; background-color: #67d0b8">
+                <AppIcon :path="mdiCheck" color="#FFFFFF" :size="20"></AppIcon>
+            </AppFlexibleButton>
+        </AppInput>
         <div class="add-friend__list">
-            <UserItem :user="user" v-for="user of searchFriendList">
-                <AppSmallButton @click="addFriend(user.userId!)">초대하기</AppSmallButton>
+            <UserItem :user="user" v-for="user of searchFriendList" :isHideDescription="true" :isShowProfileImage="true">
+                <AppSmallButton @click="addFriend(user.userId!)" style="padding-left: 24px; padding-right: 24px">초대하기</AppSmallButton>
             </UserItem>
         </div>
     </div>
