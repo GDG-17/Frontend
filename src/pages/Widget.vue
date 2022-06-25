@@ -1,18 +1,21 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-const histories = ref(["🍚", "🚲", "💻", "📖", "⚽️", "🍻"]);
+const histories = ref(["😀", "😥", "🤑", "😴", "🍺", "🍚", "☕"]);
 </script>
 
 <template>
   <div class="wrapper">
-    <nav>
-      <div class="status">🍚 배고파요</div>
-      <button>+</button>
-    </nav>
+    <div class="status">
+      <div class="emoji">😀</div>
+      <div class="text">배고파요</div>
+    </div>
     <div class="histories">
       <div class="history" v-for="history of histories">
         {{ history }}
+      </div>
+      <div class="history">
+        <img src="../img/Vector.svg" alt="추가" />
       </div>
     </div>
   </div>
@@ -20,28 +23,23 @@ const histories = ref(["🍚", "🚲", "💻", "📖", "⚽️", "🍻"]);
 
 <style lang="scss" scoped>
 .wrapper {
-  /* height: 80vh; */
-  text-align: center;
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
-  padding: 5vw;
-  nav {
+  padding: 4vw 8vw;
+  .status {
+    line-height: 13vw;
     display: flex;
-    justify-content: space-between;
-    font-size: 10vw;
-    margin: 0 10vw;
-
-    .status {
-      border: 1px solid #333;
-    }
-    button {
-      border: 1px solid #333;
-      width: 10vw;
-      height: 10vw;
-      border-radius: 50%;
+    margin: 0 2vw 3vw;
+    .emoji {
       font-size: 8vw;
-      margin: auto 0;
+      background-color: $charcoal;
+      border-radius: 50%;
+      width: 13vw;
+      height: 13vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .text {
+      margin-left: 6vw;
     }
   }
   .histories {
@@ -49,13 +47,15 @@ const histories = ref(["🍚", "🚲", "💻", "📖", "⚽️", "🍻"]);
     flex-wrap: wrap;
     justify-content: center;
     .history {
-      width: 23vw;
-      height: 23vw;
+      background: $charcoal;
+      border-radius: 50%;
+      width: 17vw;
+      height: 17vw;
       display: flex;
       justify-content: center;
       align-items: center;
       margin: 2vw;
-      font-size: 15vw;
+      font-size: 10vw;
     }
   }
 }
