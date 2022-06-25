@@ -7,9 +7,13 @@ import UserDetail from "../components/user/UserDetail.vue";
 import AppButton from "../components/app/button/AppButton.vue";
 import AppIcon from "../components/app/AppIcon.vue";
 import { mdiBell, mdiPlus } from "@mdi/js";
+import AppBottomSheet from "../components/app/bottom-sheet/AppBottomSheet.vue";
 
 const userStore = useUserStore();
 userStore.refreshFriendList();
+
+const selectedUser = ref({} as IUser);
+const isShowUserDetail = ref(false);
 </script>
 
 <template>
@@ -26,22 +30,23 @@ userStore.refreshFriendList();
             </div>
         </div>
         <div class="home__list">
-            <UserItem :user="user" v-for="user of userStore.friendList"></UserItem>
+            <UserItem
+                :user="user"
+                v-for="user of userStore.friendList"
+                @click="
+                    isShowUserDetail = true;
+                    selectedUser = user;
+                "
+            ></UserItem>
         </div>
         <AppButton class="home__cta" @click="$router.push('/change-status')">상태 설정</AppButton>
-        <UserDetail class="tmp"></UserDetail>
+        <AppBottomSheet v-model="isShowUserDetail">
+            <UserDetail :user="selectedUser"></UserDetail>
+        </AppBottomSheet>
     </div>
 </template>
 
 <style lang="scss" scoped>
-.tmp {
-    position: absolute;
-    bottom: 0;
-
-    width: 100%;
-
-    background-color: $sub-dark-gray;
-}
 .home {
     position: relative;
 
