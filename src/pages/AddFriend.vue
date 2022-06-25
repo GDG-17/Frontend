@@ -15,6 +15,10 @@ getSearchFriendList();
 async function getSearchFriendList(name?: string) {
     searchFriendList.value = await userStore.getSearchFriendList(name);
 }
+async function addFriend(targetUserId: string) {
+    await userStore.addFriends(targetUserId);
+    await userStore.refreshFriendList();
+}
 </script>
 
 <template>
@@ -28,7 +32,7 @@ async function getSearchFriendList(name?: string) {
         <AppInput style="width: 100%; margin-bottom: 10px" v-model="search" button-text="검색" @click-button="getSearchFriendList"></AppInput>
         <div class="add-friend__list">
             <UserItem :user="user" v-for="user of searchFriendList">
-                <AppSmallButton>초대하기</AppSmallButton>
+                <AppSmallButton @click="addFriend">초대하기</AppSmallButton>
             </UserItem>
         </div>
     </div>
