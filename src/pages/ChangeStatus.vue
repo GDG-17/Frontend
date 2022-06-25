@@ -3,10 +3,16 @@ import { useUserStore } from "../stores/user";
 import AppCheckbox from "../components/app/checkbox/AppCheckbox.vue";
 import { reactive, ref, watch } from "vue";
 import EmojiSelector from "../components/EmojiSelector.vue";
+import AppBottomSheet from "../components/app/bottom-sheet/AppBottomSheet.vue";
+import AppInput from "../components/app/input/AppInput.vue";
+import NoticeItem from "../components/user/NoticeItem.vue";
 
 const userStore = useUserStore();
 
 const isShowSelectTime = ref(false);
+const isShowEmojiSelector = ref(false);
+
+const description = ref("");
 const selectedTime = ref([] as boolean[]);
 </script>
 
@@ -18,15 +24,22 @@ const selectedTime = ref([] as boolean[]);
         </div>
         <div class="change-status__list">
             <div class="change-status__list__item">
-                <div class="change-status__list__item__emoji">😀</div>
-                <p class="change-status__list__item__description">고객 상태 텍스트 입력</p>
+                <div class="change-status__list__item__emoji" @click="isShowEmojiSelector = true">😀</div>
+                <AppInput v-model="description" class="change-status__list__item__description" placeholder="고객 상태 텍스트 입력" />
             </div>
             <div class="change-status__list__item" @click="isShowSelectTime = true">
                 <div class="change-status__list__item__emoji">😀</div>
                 <p class="change-status__list__item__description">다음 이후 지우기<br />default 시간</p>
             </div>
+            <h2>유저 이름의 경우</h2>
+            <NoticeItem :notice="{ emoji: '1', text: '1' }"></NoticeItem>
+            <NoticeItem :notice="{ emoji: '1', text: '1' }"></NoticeItem>
+            <NoticeItem :notice="{ emoji: '1', text: '1' }"></NoticeItem>
+            <NoticeItem :notice="{ emoji: '1', text: '1' }"></NoticeItem>
+            <NoticeItem :notice="{ emoji: '1', text: '1' }"></NoticeItem>
+            <NoticeItem :notice="{ emoji: '1', text: '1' }"></NoticeItem>
         </div>
-        <EmojiSelector class="tmp"></EmojiSelector>
+        <AppBottomSheet v-model="isShowEmojiSelector"> <EmojiSelector></EmojiSelector></AppBottomSheet>
     </div>
 
     <div class="change-status--time" v-else>
@@ -100,14 +113,6 @@ const selectedTime = ref([] as boolean[]);
 </template>
 
 <style lang="scss" scoped>
-.tmp {
-    position: absolute;
-    bottom: 0;
-
-    width: 100%;
-
-    background-color: $sub-dark-gray;
-}
 .change-status {
     position: relative;
 
