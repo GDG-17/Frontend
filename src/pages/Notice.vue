@@ -6,6 +6,9 @@ import AppIcon from "../components/app/AppIcon.vue";
 
 const userStore = useUserStore();
 userStore.refreshNoticeList();
+setInterval(() => {
+    userStore.refreshNoticeList();
+}, 1000);
 </script>
 
 <template>
