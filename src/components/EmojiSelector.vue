@@ -94,32 +94,35 @@ const filteredEmojis = computed(() => {
 
 <style lang="scss" scoped>
 .emoji-selector {
-    padding: 27px 19px 30px 19px;
+    padding: 30px 20px;
+    border-radius: 24px 24px 0 0;
+    background-color: $charcoal;
+
     input {
         @include input;
         width: 100%;
         height: 44px;
-        background: #d9d9d9;
+        background: $dark-gray;
         border-radius: 10px;
         font-family: "Roboto";
         font-style: normal;
         font-weight: 400;
         font-size: 14px;
         line-height: 16px;
-        padding: 15px 0 14px 62px;
+        padding: 6px 10px;
+        padding-left: 55px;
         border: none;
         background-image: url(../img/Search.svg);
         background-repeat: no-repeat;
-        background-position: 17px center;
+        background-position: 12px center;
 
         &::placeholder {
-            color: #000000;
+            color: $white;
         }
     }
     .frequent {
         .title {
-            padding: 18px 0 8px 17px;
-            font-family: "Roboto";
+            padding: 18px 9px;
             font-style: normal;
             font-weight: 400;
             font-size: 14px;
@@ -128,8 +131,9 @@ const filteredEmojis = computed(() => {
         .emoji-list {
             display: flex;
             flex-wrap: wrap;
+            gap: 16px;
             .emoji {
-                margin: 11px 6px;
+                @include clickable();
                 width: 36px;
                 height: 36px;
                 font-size: 30px;

@@ -4,7 +4,6 @@ import AppCheckbox from "../components/app/checkbox/AppCheckbox.vue";
 import { reactive, ref, watch } from "vue";
 import EmojiSelector from "../components/EmojiSelector.vue";
 import AppBottomSheet from "../components/app/bottom-sheet/AppBottomSheet.vue";
-import AppInput from "../components/app/input/AppInput.vue";
 import NoticeItem from "../components/user/NoticeItem.vue";
 import AppIcon from "../components/app/AppIcon.vue";
 import { mdiArrowLeft, mdiCheck, mdiClockPlusOutline, mdiClose, mdiEmoticonHappyOutline } from "@mdi/js";
@@ -23,6 +22,7 @@ const templateItemList = ref([
 const isShowSelectTime = ref(false);
 const isShowEmojiSelector = ref(false);
 
+const emoji = ref("");
 const description = ref("");
 const selectedTime = ref([false, false, true, false, false, false] as boolean[]);
 
@@ -43,10 +43,12 @@ const timeString = computed(() => {
     }
 });
 
-async function submit(emoji: string, description: string) {
+async function submit(_emoji: string, _description: string) {
+    emoji.value = _emoji;
+    description.value = _description;
     await userStore.updateStatus({
-        emoji,
-        description,
+        emoji: _emoji,
+        description: _description,
         expiredAt: moment().add(1, "day").toDate(),
     });
 }
@@ -58,13 +60,14 @@ async function submit(emoji: string, description: string) {
             <router-link to="/" tag="div" class="change-status__header__actions1"> <AppIcon color="#FFFFFF" :path="mdiClose"></AppIcon> </router-link>
             <div class="change-status__header__title">상태 설정</div>
             <div class="change-status__header__actions2">
-                <AppIcon color="#FFFFFF" :path="mdiCheck"></AppIcon>
+                <AppIcon color="#FFFFFF" :path="mdiCheck" @click="submit(emoji, description)"></AppIcon>
             </div>
         </div>
         <div class="change-status__list">
             <div class="change-status__list__item">
                 <div class="change-status__list__item__emoji" @click="isShowEmojiSelector = true">
-                    <AppIcon :path="mdiEmoticonHappyOutline" color="#FFFFFF" :size="32"></AppIcon>
+                    <AppIcon v-if="!emoji" :path="mdiEmoticonHappyOutline" color="#FFFFFF" :size="32"></AppIcon>
+                    <span v-else>{{ emoji }}</span>
                 </div>
                 <input class="change-status__list__item__input" v-model="description" type="text" placeholder="고객 상태 텍스트 입력" />
             </div>
@@ -81,7 +84,7 @@ async function submit(emoji: string, description: string) {
             <h2>유저 이름의 경우</h2>
             <NoticeItem :notice="item" v-for="item of templateItemList" @click="submit(item.emoji, item.text)"></NoticeItem>
         </div>
-        <AppBottomSheet v-model="isShowEmojiSelector"> <EmojiSelector></EmojiSelector></AppBottomSheet>
+        <AppBottomSheet v-model="isShowEmojiSelector"> <EmojiSelector @click-emoji="emoji = $event"></EmojiSelector></AppBottomSheet>
     </div>
 
     <div class="change-status--time" v-else>
