@@ -3,7 +3,8 @@ import { ref } from "vue";
 import UserItem from "../components/user/UserItem.vue";
 
 import { IUser, useUserStore } from "../stores/user";
-import EmojiSelector from "../components/EmojiSelector.vue";
+import UserDetail from "../components/user/UserDetail.vue";
+import AppButton from "../components/app/button/AppButton.vue";
 
 const userStore = useUserStore();
 userStore.refreshFriendList();
@@ -18,8 +19,8 @@ userStore.refreshFriendList();
         <div class="home__list">
             <UserItem :user="user" v-for="user of userStore.friendList"></UserItem>
         </div>
-        <div class="home__footer">상태 설정</div>
-        <EmojiSelector class="tmp"></EmojiSelector>
+        <AppButton class="home__cta">상태 설정</AppButton>
+        <UserDetail class="tmp"></UserDetail>
     </div>
 </template>
 
@@ -59,27 +60,16 @@ userStore.refreshFriendList();
     }
 
     .home__list {
+        flex: 1;
         width: 100%;
         display: flex;
         flex-direction: column;
         gap: 5px;
     }
 
-    .home__cta-button {
-        position: absolute;
-        right: 40px;
-        bottom: 40px;
-
-        width: 46px;
-        height: 46px;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        background-color: $sub-dark-gray;
-
-        border-radius: 7px;
+    .home__cta {
+        width: 100%;
+        margin-bottom: 20px;
     }
 }
 </style>

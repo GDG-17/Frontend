@@ -9,9 +9,7 @@ const props = defineProps<Props>();
 
 <template>
     <div class="user-item">
-        <div class="user-item__profile-image">
-            <img src="https://www.w3schools.com/howto/img_avatar.png" alt="" />
-        </div>
+        <div class="user-item__emoji">😀</div>
         <div class="user-item__profile">
             <h3 class="user-item__profile__name">{{ user.userId }}</h3>
             <p class="user-item__profile__description">{{ user.description }}</p>
@@ -28,22 +26,12 @@ const props = defineProps<Props>();
     display: flex;
     align-items: center;
 
-    &__profile-image {
-        width: 46px;
-        height: 46px;
+    padding: 10px 15px;
 
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    background-color: $sub-light-gray;
 
-        overflow: hidden;
-        border-radius: 7px;
-
-        margin-right: 10px;
-
-        img {
-            width: 100%;
-        }
+    &__emoji {
+        @include emoji-box();
     }
 
     &__profile {

@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-    <button class="app-button">버튼</button>
+    <button class="app-button"><slot></slot></button>
 </template>
 
 <style lang="scss" scoped>

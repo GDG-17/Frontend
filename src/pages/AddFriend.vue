@@ -2,7 +2,6 @@
 import { ref } from "vue";
 import UserItem from "../components/user/UserItem.vue";
 import { IUser, useUserStore } from "../stores/user";
-import AppButton from "../components/app/button/AppButton.vue";
 import AppSmallButton from "../components/app/button/AppSmallButton.vue";
 const userStore = useUserStore();
 
@@ -25,7 +24,6 @@ async function getSearchFriendList() {
                 <AppSmallButton>초대하기</AppSmallButton>
             </UserItem>
         </div>
-        <div class="add-friend__footer">상태 설정</div>
     </div>
 </template>
 
@@ -62,21 +60,7 @@ async function getSearchFriendList() {
         gap: 5px;
     }
 
-    .add-friend__cta-button {
-        position: absolute;
-        right: 40px;
-        bottom: 40px;
-
-        width: 46px;
-        height: 46px;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        background-color: $sub-dark-gray;
-
-        border-radius: 7px;
+    .add-friend__cta {
     }
 }
 </style>
