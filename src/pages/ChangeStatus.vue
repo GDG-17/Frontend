@@ -6,6 +6,8 @@ import EmojiSelector from "../components/EmojiSelector.vue";
 import AppBottomSheet from "../components/app/bottom-sheet/AppBottomSheet.vue";
 import AppInput from "../components/app/input/AppInput.vue";
 import NoticeItem from "../components/user/NoticeItem.vue";
+import AppIcon from "../components/app/AppIcon.vue";
+import { mdiCheck, mdiClose } from "@mdi/js";
 
 const userStore = useUserStore();
 
@@ -19,8 +21,13 @@ const selectedTime = ref([] as boolean[]);
 <template>
     <div class="change-status" v-if="!isShowSelectTime">
         <div class="change-status__header">
-            <div class="change-status__header__logo">앱 이름</div>
-            <div class="change-status__header__actions"></div>
+            <router-link to="/" tag="div" class="change-status__header__actions1">
+                <AppIcon :path="mdiClose"></AppIcon>
+            </router-link>
+            <div class="change-status__header__title">상태 설정</div>
+            <div class="change-status__header__actions2">
+                <AppIcon :path="mdiCheck"></AppIcon>
+            </div>
         </div>
         <div class="change-status__list">
             <div class="change-status__list__item">
@@ -130,13 +137,26 @@ const selectedTime = ref([] as boolean[]);
         width: 100%;
 
         display: flex;
+        justify-content: space-between;
         align-items: center;
 
-        height: 80px;
+        height: 60px;
 
         padding: 10px;
 
-        background-color: $primary-color;
+        .change-status__header__actions1 {
+            position: absolute;
+            left: 0;
+        }
+        .change-status__header__actions2 {
+            position: absolute;
+            right: 0;
+        }
+
+        .change-status__header__title {
+            width: 100%;
+            text-align: center;
+        }
     }
 
     .change-status__list {
@@ -177,13 +197,22 @@ const selectedTime = ref([] as boolean[]);
         width: 100%;
 
         display: flex;
+        justify-content: space-between;
         align-items: center;
 
-        height: 80px;
+        height: 60px;
 
         padding: 10px;
 
-        background-color: $primary-color;
+        .change-status__header__title {
+            width: 100%;
+            text-align: center;
+        }
+
+        .change-status__header__actions {
+            position: absolute;
+            left: 0;
+        }
     }
     .change-status__list {
         width: 100%;

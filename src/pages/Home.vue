@@ -5,6 +5,8 @@ import UserItem from "../components/user/UserItem.vue";
 import { IUser, useUserStore } from "../stores/user";
 import UserDetail from "../components/user/UserDetail.vue";
 import AppButton from "../components/app/button/AppButton.vue";
+import AppIcon from "../components/app/AppIcon.vue";
+import { mdiBell, mdiPlus } from "@mdi/js";
 
 const userStore = useUserStore();
 userStore.refreshFriendList();
@@ -13,13 +15,20 @@ userStore.refreshFriendList();
 <template>
     <div class="home">
         <div class="home__header">
-            <div class="home__header__logo">앱 이름</div>
-            <div class="home__header__actions"></div>
+            <div class="home__header__logo"></div>
+            <div class="home__header__actions">
+                <router-link to="/add-friend">
+                    <AppIcon color="#000000" :path="mdiPlus" style="margin-right: 10px"></AppIcon>
+                </router-link>
+                <router-link to="/notice">
+                    <AppIcon color="#000000" :path="mdiBell"></AppIcon>
+                </router-link>
+            </div>
         </div>
         <div class="home__list">
             <UserItem :user="user" v-for="user of userStore.friendList"></UserItem>
         </div>
-        <AppButton class="home__cta">상태 설정</AppButton>
+        <AppButton class="home__cta" @click="$router.push('/change-status')">상태 설정</AppButton>
         <UserDetail class="tmp"></UserDetail>
     </div>
 </template>
@@ -50,13 +59,12 @@ userStore.refreshFriendList();
         width: 100%;
 
         display: flex;
+        justify-content: space-between;
         align-items: center;
 
-        height: 80px;
+        height: 60px;
 
         padding: 10px;
-
-        background-color: $primary-color;
     }
 
     .home__list {
