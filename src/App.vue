@@ -7,7 +7,7 @@ import { useUserStore } from "./stores/user";
 const dialogStore = useDialogStore();
 const userStore = useUserStore();
 
-userStore.refreshStatus("1");
+userStore.refreshStatus("6");
 </script>
 
 <template>

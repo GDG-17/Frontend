@@ -10,7 +10,7 @@ export interface IStatus {
     expiredAt: Date;
 }
 export interface IUser extends IStatus {
-    interesting: boolean;
+    interesting?: boolean;
 }
 
 export interface INotice {
@@ -92,11 +92,11 @@ export const useUserStore = defineStore("userStore", {
                 })
             ).data as INotice[];
         },
-        async pushNotice(emoji: string, type: string = "COCK", targetUserId: string) {
+        async pushNotice(emoji: string, targetUserId: string) {
             this.noticeList = (
                 await axios.post("/apis/users/notification", {
                     emoji,
-                    type,
+                    userId: this.user.userId,
                     targetUserId,
                 })
             ).data as INotice[];

@@ -49,6 +49,7 @@ const timeString = computed(() => {
 async function submit(_emoji: string, _description: string) {
     emoji.value = _emoji;
     description.value = _description;
+    console.log(_emoji, _description);
     await userStore.updateStatus({
         userName: userStore.user.userName,
         profileImage: userStore.user.profileImage,
