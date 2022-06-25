@@ -9,7 +9,7 @@ const props = defineProps<Props>();
 
 <template>
     <div class="notice-item">
-        <div class="notice-item__profile-image">
+        <div class="notice-item__emoji">
             <img src="https://www.w3schools.com/howto/img_avatar.png" alt="" />
         </div>
         <p class="notice-item__description">상태 텍스트</p>
@@ -26,22 +26,8 @@ const props = defineProps<Props>();
 
     background-color: $sub-light-gray;
 
-    &__profile-image {
-        width: 46px;
-        height: 46px;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        overflow: hidden;
-        border-radius: 7px;
-
-        margin-right: 10px;
-
-        img {
-            width: 100%;
-        }
+    &__emoji {
+        @include emoji-box();
     }
 
     &__description {
