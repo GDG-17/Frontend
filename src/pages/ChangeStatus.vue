@@ -24,6 +24,9 @@ const isShowEmojiSelector = ref(false);
 
 const emoji = ref("");
 const description = ref("");
+emoji.value = userStore.user.emoji;
+description.value = userStore.user.description;
+
 const selectedTime = ref([false, false, true, false, false, false] as boolean[]);
 
 const timeString = computed(() => {
@@ -47,6 +50,8 @@ async function submit(_emoji: string, _description: string) {
     emoji.value = _emoji;
     description.value = _description;
     await userStore.updateStatus({
+        userName: userStore.user.userName,
+        profileImage: userStore.user.profileImage,
         emoji: _emoji,
         description: _description,
         expiredAt: moment().add(1, "day").toDate(),

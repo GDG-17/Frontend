@@ -2,8 +2,12 @@
 import { useDialogStore } from "./stores/dialog";
 import AppDialog from "./components/app/dialog/AppDialog.vue";
 import FadeTransition from "./transitions/FadeTransition.vue";
+import { useUserStore } from "./stores/user";
 
 const dialogStore = useDialogStore();
+const userStore = useUserStore();
+
+userStore.refreshStatus("1");
 </script>
 
 <template>

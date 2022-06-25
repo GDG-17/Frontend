@@ -3,12 +3,13 @@ import { defineStore } from "pinia";
 
 export interface IStatus {
     userId?: string;
+    profileImage?: string;
+    userName: string;
     emoji: string;
     description: string;
     expiredAt: Date;
 }
 export interface IUser extends IStatus {
-    imageProfile: string;
     interesting: boolean;
 }
 
@@ -21,7 +22,7 @@ export interface INotice {
 export const useUserStore = defineStore("userStore", {
     state: () => ({
         user: {
-            userId: "123",
+            userId: "1",
         } as IUser,
         friendList: [] as IUser[],
         noticeList: [] as INotice[],
@@ -47,9 +48,9 @@ export const useUserStore = defineStore("userStore", {
 
         async getSearchFriendList(name?: string) {
             return (
-                await axios.get("/apis/friends", {
+                await axios.get("/apis/users", {
                     params: {
-                        userId: this.user.userId,
+                        // userId: this.user.userId,
                         f: "search",
                         name,
                     },
@@ -57,7 +58,7 @@ export const useUserStore = defineStore("userStore", {
             ).data as IUser[];
         },
         async updateStatus(status: IStatus) {
-            return (await axios.post("/apis/users/me", { userId: this.user.userId, ...status })).data as IUser[];
+            return (await axios.patch("/apis/users/me", { userId: this.user.userId, ...status })).data as IUser[];
         },
         async refreshStatus(userId: string) {
             this.user = (
@@ -67,10 +68,19 @@ export const useUserStore = defineStore("userStore", {
                     },
                 })
             ).data as IUser;
+            console.log(this.user);
             return this.user;
         },
         async createUser(userName: string) {
-            return (await axios.patch("/apis/users/me", { userName, emoji: "", description: "", imageProfile: "", expiredAt: new Date() })).data as IUser[];
+            return (
+                await axios.post("/apis/users/me", {
+                    userName,
+                    emoji: "🍚",
+                    description: "Hello",
+                    profileImage: "https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png",
+                    expiredAt: new Date(),
+                })
+            ).data as IUser[];
         },
 
         async refreshNoticeList() {

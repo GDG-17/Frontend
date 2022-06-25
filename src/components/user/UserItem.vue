@@ -11,7 +11,7 @@ const props = defineProps<Props>();
     <div class="user-item">
         <div class="user-item__emoji">😀</div>
         <div class="user-item__profile">
-            <h3 class="user-item__profile__name">{{ user.userId }}</h3>
+            <h3 class="user-item__profile__name">{{ user.userName }}</h3>
             <p class="user-item__profile__description">{{ user.description }}</p>
         </div>
         <div class="user-item__actions">

@@ -10,6 +10,7 @@ import { mdiBell, mdiPlus } from "@mdi/js";
 import AppBottomSheet from "../components/app/bottom-sheet/AppBottomSheet.vue";
 
 const userStore = useUserStore();
+// userStore.createUser("테스트6");
 userStore.refreshFriendList();
 
 const selectedUser = ref({} as IUser);
