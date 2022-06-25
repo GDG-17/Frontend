@@ -1,13 +1,13 @@
 <script setup lang="ts"></script>
 
 <template>
-    <div class="home">
+    <div class="notice">
         <div class="home__cta-button">+</div>
     </div>
 </template>
 
 <style lang="scss" scoped>
-.home {
+.notice {
     position: relative;
 
     display: flex;
