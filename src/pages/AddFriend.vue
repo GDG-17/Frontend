@@ -2,27 +2,27 @@
 import { ref } from "vue";
 import UserItem from "../components/user/UserItem.vue";
 import { IUser } from "../stores/user";
-
-import axios from "axios";
-
-const friends = ref((await axios.get("http://localhost:8080/apis/friends?userId=test")).data);
+const tmpUser = ref({
+    userId: "123",
+    userName: "test",
+} as IUser);
 </script>
 
 <template>
-    <div class="home">
-        <div class="home__header">
-            <div class="home__header__logo">앱 이름</div>
-            <div class="home__header__actions"></div>
+    <div class="add-friend">
+        <div class="add-friend__header">
+            <div class="add-friend__header__logo">앱 이름</div>
+            <div class="add-friend__header__actions"></div>
         </div>
-        <div class="home__list">
-            <UserItem :user="user" v-for="user of friends"></UserItem>
+        <div class="add-friend__list">
+            <UserItem :user="tmpUser"></UserItem>
         </div>
-        <div class="home__footer">상태 설정</div>
+        <div class="add-friend__footer">상태 설정</div>
     </div>
 </template>
 
 <style lang="scss" scoped>
-.home {
+.add-friend {
     position: relative;
 
     display: flex;
@@ -35,7 +35,7 @@ const friends = ref((await axios.get("http://localhost:8080/apis/friends?userId=
 
     margin: 0 auto;
 
-    .home__header {
+    .add-friend__header {
         width: 100%;
 
         display: flex;
@@ -47,13 +47,13 @@ const friends = ref((await axios.get("http://localhost:8080/apis/friends?userId=
 
         background-color: $primary-color;
     }
-    .home__list {
+    .add-friend__list {
         width: 100%;
         display: flex;
         flex-direction: column;
         gap: 5px;
 
-        .home__list__item {
+        .add-friend__list__item {
             height: fit-content;
             display: flex;
 
@@ -88,7 +88,7 @@ const friends = ref((await axios.get("http://localhost:8080/apis/friends?userId=
         }
     }
 
-    .home__cta-button {
+    .add-friend__cta-button {
         position: absolute;
         right: 40px;
         bottom: 40px;

@@ -2,7 +2,7 @@
 
 <template>
     <div class="notice">
-        <div class="home__cta-button">+</div>
+        <div class="notice__cta-button">+</div>
     </div>
 </template>
 
@@ -23,7 +23,7 @@
 
     background-color: $title-gray;
 
-    .home__cta-button {
+    .notice__cta-button {
         position: absolute;
         right: 40px;
         bottom: 40px;

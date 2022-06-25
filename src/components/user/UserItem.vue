@@ -1,23 +1,23 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import UserItem from "../components/user/UserItem.vue";
-import { IUser } from "../stores/user";
+import { IUser } from "../../stores/user";
 
-import axios from "axios";
-
-const friends = ref((await axios.get("http://localhost:8080/apis/friends?userId=test")).data);
+interface Props {
+    user: IUser;
+}
+const props = defineProps<Props>();
 </script>
 
 <template>
-    <div class="home">
-        <div class="home__header">
-            <div class="home__header__logo">앱 이름</div>
-            <div class="home__header__actions"></div>
+    <div>
+        <div class="user">
+            <div class="user__profile-image">
+                <img src="https://www.w3schools.com/howto/img_avatar.png" alt="" />
+            </div>
+            <div class="user__profile">
+                <h3 class="user__profile__name">유저 이름</h3>
+                <p class="user__profile__description">상태 텍스트</p>
+            </div>
         </div>
-        <div class="home__list">
-            <UserItem :user="user" v-for="user of friends"></UserItem>
-        </div>
-        <div class="home__footer">상태 설정</div>
     </div>
 </template>
 
@@ -53,7 +53,7 @@ const friends = ref((await axios.get("http://localhost:8080/apis/friends?userId=
         flex-direction: column;
         gap: 5px;
 
-        .home__list__item {
+        .user {
             height: fit-content;
             display: flex;
 
