@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { IUser, useUserStore } from "../../stores/user";
+import groupTransition from "../../transitions/groupTransition.vue";
 interface Props {
     user: IUser;
 }
@@ -8,6 +9,7 @@ const props = defineProps<Props>();
 const emojis = ref(["❤️", "🍺", "🍚", "☕", "🎮", "🎬", "⚽", "🎢"]);
 
 const userStore = useUserStore();
+const animationList = ref([] as any[]);
 
 async function toggleInterestingr() {
     if (props.user.interesting) {
@@ -16,6 +18,21 @@ async function toggleInterestingr() {
     } else {
         await userStore.addSubscribe(props.user.userId!);
         props.user.interesting = true;
+    }
+}
+
+async function pushNotice(emoji: string, userId: string) {
+    userStore.pushNotice(emoji, userId);
+    if (animationList.value.length < 10) {
+        animationList.value.push({
+            emoji,
+            randomX: Math.floor(Math.random() * 100) - 50,
+            randomY: Math.floor(Math.random() * 100) - 50,
+            key: new Date().getTime(),
+        });
+        setTimeout(() => {
+            animationList.value.shift();
+        }, 1000);
     }
 }
 </script>
@@ -33,7 +50,14 @@ async function toggleInterestingr() {
         </div>
         <div class="user-name">{{ user.userName }}</div>
         <div class="emoji-list">
-            <div class="emoji" v-for="emoji of emojis" @click="userStore.pushNotice(emoji, user.userId!)">{{ emoji }}</div>
+            <div class="emoji" v-for="emoji of emojis" @click="pushNotice(emoji,user.userId!)">{{ emoji }}</div>
+        </div>
+        <div class="user-detail__animation">
+            <transition-group name="group" :duration="1000">
+                <div class="user-detail__animation__item" v-for="item of animationList" :key="item.key" :style="{ transform: `translateX(${item.randomX}px) translateY(${item.randomY}px)` }">
+                    {{ item.emoji }}
+                </div>
+            </transition-group>
         </div>
     </div>
 </template>
@@ -54,6 +78,29 @@ $partSize: 5em;
     position: relative;
     background-color: $black;
     border-radius: 20px 20px 0 0;
+
+    .user-detail__animation {
+        pointer-events: none;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+
+        width: 100%;
+        height: 100%;
+
+        z-index: 1;
+
+        .user-detail__animation__item {
+            font-size: 64px;
+            width: 64px;
+            height: 64px;
+
+            position: absolute;
+            left: calc(50% - 32px);
+            bottom: 70%;
+            opacity: 1;
+        }
+    }
     &::before {
         content: "";
         width: 80px;
@@ -113,9 +160,11 @@ $partSize: 5em;
         color: $white;
     }
     .emoji-list {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 10px;
+        align-self: center;
+        justify-self: center;
         margin-bottom: 28px;
         .emoji {
             background: #313439;
@@ -130,6 +179,17 @@ $partSize: 5em;
             font-weight: 400;
             font-size: 44px;
             line-height: 52px;
+
+            transition: 0.25s;
+
+            @include clickable;
+
+            &:hover {
+                transform: scale(1.1);
+            }
+            &:active {
+                transform: scale(0.9);
+            }
         }
     }
 
@@ -164,5 +224,32 @@ $partSize: 5em;
             transform: translateY(-10em) scale(0);
         }
     }
+}
+.group-enter-active {
+    transition: 1s ease-out;
+}
+
+.group-leave-active {
+    transition: 1s ease-out;
+}
+
+.group-enter-from {
+    left: calc(50% - 32px) !important;
+    bottom: 0 !important;
+    opacity: 0 !important;
+    font-size: 0px !important;
+}
+.group-enter-to {
+    position: absolute !important;
+    left: calc(50% - 32px) !important;
+    bottom: 70% !important;
+    opacity: 1 !important;
+    font-size: 64px !important;
+}
+.group-leave-from {
+    opacity: 1 !important;
+}
+.group-leave-to {
+    opacity: 0 !important;
 }
 </style>
