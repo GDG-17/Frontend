@@ -58,6 +58,9 @@ userStore.refreshNoticeList();
         }
     }
     .notice__list {
+        flex: 1;
+        overflow-y: scroll;
+
         width: 100%;
         display: flex;
         flex-direction: column;

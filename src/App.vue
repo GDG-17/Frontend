@@ -3,11 +3,16 @@ import { useDialogStore } from "./stores/dialog";
 import AppDialog from "./components/app/dialog/AppDialog.vue";
 import FadeTransition from "./transitions/FadeTransition.vue";
 import { useUserStore } from "./stores/user";
+import { useRouter } from "vue-router";
 
 const dialogStore = useDialogStore();
 const userStore = useUserStore();
 
-userStore.refreshStatus("6");
+const router = useRouter();
+// router.isReady().then(() => {
+//     if (router.currentRoute.value.query.userId) userStore.refreshStatus(router.currentRoute.value.query.userId as string);
+// });
+userStore.refreshStatus("1");
 </script>
 
 <template>
