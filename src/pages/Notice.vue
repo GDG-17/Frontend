@@ -12,7 +12,7 @@ userStore.refreshNoticeList();
     <div class="notice">
         <div class="notice__header">
             <router-link to="/" tag="div" class="notice__header__actions">
-                <AppIcon :path="mdiArrowLeft"></AppIcon>
+                <AppIcon color="#FFFFFF" :path="mdiArrowLeft"></AppIcon>
             </router-link>
             <div class="notice__header__title">알림 확인하기</div>
         </div>

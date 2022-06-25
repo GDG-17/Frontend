@@ -42,7 +42,7 @@ function toggle() {
         height: 24px;
         border: 1px solid #ababab;
         border-radius: 100%;
-        margin: 10px;
+        /* margin: 10px; */
         transition: 0.25s;
         .material-icons {
             transform: translateY(8px) scale(0);
@@ -57,8 +57,8 @@ function toggle() {
     }
     // 체크 시
     .app-checkbox__input:checked + .app-checkbox__button {
-        border: 1px solid $primary-color;
-        background-color: $primary-color;
+        border: 1px solid $white;
+        background-color: $white;
         .material-icons {
             transform: translateY(0px) scale(1);
         }

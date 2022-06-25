@@ -25,14 +25,14 @@ async function addFriend(targetUserId: string) {
     <div class="add-friend">
         <div class="add-friend__header">
             <router-link to="/" tag="div" class="add-friend__header__actions">
-                <AppIcon :path="mdiArrowLeft"></AppIcon>
+                <AppIcon color="#FFFFFF" :path="mdiArrowLeft"></AppIcon>
             </router-link>
             <div class="add-friend__header__title">친구 추가하기</div>
         </div>
         <AppInput style="width: 100%; margin-bottom: 10px" v-model="search" button-text="검색" @click-button="getSearchFriendList"></AppInput>
         <div class="add-friend__list">
             <UserItem :user="user" v-for="user of searchFriendList">
-                <AppSmallButton @click="addFriend">초대하기</AppSmallButton>
+                <AppSmallButton @click="addFriend(user.userId!)">초대하기</AppSmallButton>
             </UserItem>
         </div>
     </div>

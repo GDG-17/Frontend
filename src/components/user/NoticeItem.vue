@@ -20,15 +20,18 @@ const props = defineProps<Props>();
     display: flex;
     align-items: center;
 
-    padding: 10px 15px;
+    padding: 16px 24px;
 
-    background-color: $sub-light-gray;
+    background-color: $black;
 
     &__emoji {
         @include emoji-box();
     }
 
     &__description {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 16px;
     }
 }
 </style>

@@ -22,10 +22,10 @@ const isShowUserDetail = ref(false);
             <div class="home__header__logo"></div>
             <div class="home__header__actions">
                 <router-link to="/add-friend">
-                    <AppIcon color="#000000" :path="mdiPlus" style="margin-right: 10px"></AppIcon>
+                    <AppIcon color="#FFFFFF" :path="mdiPlus" style="margin-right: 10px"></AppIcon>
                 </router-link>
                 <router-link to="/notice">
-                    <AppIcon color="#000000" :path="mdiBell"></AppIcon>
+                    <AppIcon color="#FFFFFF" :path="mdiBell"></AppIcon>
                 </router-link>
             </div>
         </div>

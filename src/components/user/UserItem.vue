@@ -27,9 +27,9 @@ const props = defineProps<Props>();
     display: flex;
     align-items: center;
 
-    padding: 10px 15px;
+    padding: 16px 24px;
 
-    background-color: $sub-light-gray;
+    background-color: $black;
 
     &__emoji {
         @include emoji-box();
@@ -41,8 +41,16 @@ const props = defineProps<Props>();
         justify-content: center;
 
         &__name {
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 14px;
+
+            margin-bottom: 4px;
         }
         &__description {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 16px;
         }
     }
     &__actions {

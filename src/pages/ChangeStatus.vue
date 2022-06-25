@@ -37,11 +37,11 @@ async function submit(emoji: string, description: string) {
     <div class="change-status" v-if="!isShowSelectTime">
         <div class="change-status__header">
             <router-link to="/" tag="div" class="change-status__header__actions1">
-                <AppIcon :path="mdiClose"></AppIcon>
+                <AppIcon color="#FFFFFF" :path="mdiClose"></AppIcon>
             </router-link>
             <div class="change-status__header__title">상태 설정</div>
             <div class="change-status__header__actions2">
-                <AppIcon :path="mdiCheck"></AppIcon>
+                <AppIcon color="#FFFFFF" :path="mdiCheck"></AppIcon>
             </div>
         </div>
         <div class="change-status__list">
@@ -62,7 +62,7 @@ async function submit(emoji: string, description: string) {
     <div class="change-status--time" v-else>
         <div class="change-status__header">
             <div class="change-status__header__actions" @click="isShowSelectTime = false">
-                <AppIcon :path="mdiArrowLeft"></AppIcon>
+                <AppIcon color="#FFFFFF" :path="mdiArrowLeft"></AppIcon>
             </div>
             <div class="change-status__header__title">상태 설정</div>
         </div>
@@ -181,9 +181,9 @@ async function submit(emoji: string, description: string) {
             display: flex;
             align-items: center;
 
-            padding: 10px 15px;
+            padding: 16px 24px;
 
-            background-color: $sub-light-gray;
+            background-color: $black;
 
             &__emoji {
                 @include emoji-box();
@@ -237,9 +237,9 @@ async function submit(emoji: string, description: string) {
             justify-content: space-between;
             align-items: center;
 
-            padding: 10px 15px;
+            padding: 16px 24px;
 
-            background-color: $sub-light-gray;
+            background-color: $black;
         }
     }
 }

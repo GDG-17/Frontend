@@ -1,6 +1,6 @@
 @mixin emoji-box {
-    width: 46px;
-    height: 46px;
+    width: 32px;
+    height: 32px;
 
     display: flex;
     justify-content: center;
@@ -9,9 +9,7 @@
     overflow: hidden;
     border-radius: 7px;
 
-    background-color: $sub-dark-gray;
+    margin-right: 24px;
 
-    margin-right: 10px;
-
-    font-size: 24px;
+    font-size: 32px;
 }

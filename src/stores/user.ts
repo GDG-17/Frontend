@@ -2,7 +2,7 @@ import axios from "axios";
 import { defineStore } from "pinia";
 
 export interface IStatus {
-    userId?: number;
+    userId?: string;
     emoji: string;
     description: string;
     expiredAt: Date;
@@ -21,7 +21,7 @@ export interface INotice {
 export const useUserStore = defineStore("userStore", {
     state: () => ({
         user: {
-            userId: 123,
+            userId: "123",
         } as IUser,
         friendList: [] as IUser[],
         noticeList: [] as INotice[],

@@ -12,7 +12,6 @@
     padding: 10px 80px;
 
     font-size: 20px;
-    color: white;
 
     &:hover {
         filter: brightness(0.9);
