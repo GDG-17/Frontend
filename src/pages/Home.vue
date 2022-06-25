@@ -59,46 +59,6 @@ userStore.updateFriendList();
 
         background-color: $primary-color;
     }
-    .home__list {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-
-        .home__list__item {
-            height: fit-content;
-            display: flex;
-
-            &__profile-image {
-                width: 50px;
-                height: 50px;
-
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
-                overflow: hidden;
-                border-radius: 100%;
-
-                margin-right: 10px;
-
-                img {
-                    width: 100%;
-                }
-            }
-
-            &__profile {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-
-                &__name {
-                }
-                &__description {
-                }
-            }
-        }
-    }
 
     .home__cta-button {
         position: absolute;

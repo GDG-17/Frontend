@@ -28,5 +28,8 @@ export const useUserStore = defineStore("userStore", {
         async updateNoticeList() {
             this.friendList = (await axios.get("/apis/users/notification?userId=test")).data as IUser[];
         },
+        async getSearchFriendList() {
+            return (await axios.get("/apis/friends?userId=test")).data as IUser[];
+        },
     },
 });
