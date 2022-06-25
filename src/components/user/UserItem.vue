@@ -29,7 +29,7 @@ const props = defineProps<Props>();
 
     padding: 16px 24px;
 
-    border-bottom: 1px solid $charcoal;
+    border-bottom: 1px solid $gray;
 
     &__emoji {
         @include emoji-box();

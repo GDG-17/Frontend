@@ -65,23 +65,23 @@ async function submit(_emoji: string, _description: string) {
 <template>
     <div class="change-status" v-if="!isShowSelectTime">
         <div class="change-status__header">
-            <router-link to="/" tag="div" class="change-status__header__actions1"> <AppIcon color="#FFFFFF" :path="mdiClose"></AppIcon> </router-link>
+            <router-link to="/" tag="div" class="change-status__header__actions1"> <AppIcon color="#000000" :path="mdiClose"></AppIcon> </router-link>
             <div class="change-status__header__title">상태 설정</div>
             <div class="change-status__header__actions2">
-                <AppIcon color="#FFFFFF" :path="mdiCheck" @click="submit(emoji, description)"></AppIcon>
+                <AppIcon color="#000000" :path="mdiCheck" @click="submit(emoji, description)"></AppIcon>
             </div>
         </div>
         <div class="change-status__list">
             <div class="change-status__list__item">
                 <div class="change-status__list__item__emoji" @click="isShowEmojiSelector = true">
-                    <AppIcon v-if="!emoji" :path="mdiEmoticonHappyOutline" color="#FFFFFF" :size="32"></AppIcon>
+                    <AppIcon v-if="!emoji" :path="mdiEmoticonHappyOutline" color="#000000" :size="32"></AppIcon>
                     <span v-else>{{ emoji }}</span>
                 </div>
                 <input class="change-status__list__item__input" v-model="description" type="text" placeholder="고객 상태 텍스트 입력" />
             </div>
             <div class="change-status__list__item" @click="isShowSelectTime = true">
                 <div class="change-status__list__item__emoji">
-                    <AppIcon :path="mdiClockPlusOutline" color="#FFFFFF" :size="32"></AppIcon>
+                    <AppIcon :path="mdiClockPlusOutline" color="#000000" :size="32"></AppIcon>
                 </div>
                 <p class="change-status__list__item__description">
                     <span style="font-weight: 400; font-size: 16px; line-height: 19px">다음 이후 지우기</span><br /><span style="font-weight: 400; font-size: 12px; line-height: 14px">
@@ -98,7 +98,7 @@ async function submit(_emoji: string, _description: string) {
     <div class="change-status--time" v-else>
         <div class="change-status__header">
             <div class="change-status__header__actions" @click="isShowSelectTime = false">
-                <AppIcon color="#FFFFFF" :path="mdiArrowLeft"></AppIcon>
+                <AppIcon color="#000000" :path="mdiArrowLeft"></AppIcon>
             </div>
             <div class="change-status__header__title">상태 설정</div>
         </div>
@@ -222,7 +222,7 @@ async function submit(_emoji: string, _description: string) {
 
             padding: 16px 24px;
 
-            border-bottom: 1px solid $charcoal;
+            border-bottom: 1px solid $gray;
 
             font-weight: 400;
             font-size: 14px;
@@ -235,7 +235,7 @@ async function submit(_emoji: string, _description: string) {
 
             padding: 16px 24px;
 
-            border-bottom: 1px solid $charcoal;
+            border-bottom: 1px solid $gray;
 
             &__input {
                 background: none;
@@ -245,8 +245,6 @@ async function submit(_emoji: string, _description: string) {
                 font-weight: 400;
                 font-size: 16px;
                 line-height: 19px;
-
-                color: $white;
 
                 &::placeholder {
                     color: $gray;

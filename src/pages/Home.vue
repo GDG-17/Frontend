@@ -21,13 +21,15 @@ const isShowUserDetail = ref(false);
 <template>
     <div class="home">
         <div class="home__header">
-            <div class="home__header__logo"></div>
+            <div class="home__header__logo">
+                <img src="../img/logo.svg" alt="" />
+            </div>
             <div class="home__header__actions">
-                <router-link to="/add-friend">
-                    <AppIcon color="#FFFFFF" :path="mdiPlus" style="margin-right: 10px"></AppIcon>
+                <router-link to="/notice" tag="div" class="home__header__actions__item">
+                    <AppIcon color="#FFFFFF" :path="mdiBell" :size="28"></AppIcon>
                 </router-link>
-                <router-link to="/notice">
-                    <AppIcon color="#FFFFFF" :path="mdiBell"></AppIcon>
+                <router-link to="/add-friend" tag="div" class="home__header__actions__item">
+                    <AppIcon color="#FFFFFF" :path="mdiPlus" :size="28"></AppIcon>
                 </router-link>
             </div>
         </div>
@@ -41,7 +43,9 @@ const isShowUserDetail = ref(false);
                 "
             ></UserItem>
         </div>
-        <AppFlexibleButton style="height: fit-content; border-radius: 7px; margin: 16px" class="home__cta" @click="$router.push('/change-status')">상태 설정</AppFlexibleButton>
+        <div style="width: 100%; padding: 0 20px">
+            <AppFlexibleButton style="height: fit-content; border-radius: 7px" class="home__cta" @click="$router.push('/change-status')">상태 설정</AppFlexibleButton>
+        </div>
         <AppBottomSheet v-model="isShowUserDetail">
             <UserDetail :user="selectedUser"></UserDetail>
         </AppBottomSheet>
@@ -69,9 +73,27 @@ const isShowUserDetail = ref(false);
         justify-content: space-between;
         align-items: center;
 
-        height: 60px;
+        padding: 26px;
 
-        padding: 10px;
+        .home__header__logo {
+            display: flex;
+            align-items: center;
+        }
+        .home__header__actions {
+            display: flex;
+            gap: 10px;
+            .home__header__actions__item {
+                width: 48px;
+                height: 48px;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                background-color: #67d0b8;
+                border-radius: 7px;
+            }
+        }
     }
 
     .home__list {
