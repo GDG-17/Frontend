@@ -2,15 +2,12 @@
 import { ref } from "vue";
 import UserItem from "../components/user/UserItem.vue";
 
-import axios from "axios";
-import { IUser } from "../stores/user";
+import { IUser, useUserStore } from "../stores/user";
 
 const friends = ref([] as IUser[]);
 
-reloadFriendList();
-async function reloadFriendList() {
-    friends.value = (await axios.get("/apis/friends?userId=test")).data as IUser[];
-}
+const userStore = useUserStore();
+userStore.updateFriendList();
 </script>
 
 <template>
@@ -20,7 +17,7 @@ async function reloadFriendList() {
             <div class="home__header__actions"></div>
         </div>
         <div class="home__list">
-            <UserItem :user="user" v-for="user of friends"></UserItem>
+            <UserItem :user="user" v-for="user of userStore.friendList"></UserItem>
         </div>
         <div class="home__footer">상태 설정</div>
     </div>
