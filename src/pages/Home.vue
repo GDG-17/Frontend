@@ -3,6 +3,7 @@ import { ref } from "vue";
 import UserItem from "../components/user/UserItem.vue";
 
 import { IUser, useUserStore } from "../stores/user";
+import EmojiSelector from "../components/EmojiSelector.vue";
 
 const friends = ref([] as IUser[]);
 
@@ -20,10 +21,19 @@ userStore.updateFriendList();
             <UserItem :user="user" v-for="user of userStore.friendList"></UserItem>
         </div>
         <div class="home__footer">상태 설정</div>
+        <EmojiSelector class="tmp"></EmojiSelector>
     </div>
 </template>
 
 <style lang="scss" scoped>
+.tmp {
+    position: absolute;
+    bottom: 0;
+
+    width: 100%;
+
+    background-color: $sub-dark-gray;
+}
 .home {
     position: relative;
 
