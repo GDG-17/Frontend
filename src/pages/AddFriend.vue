@@ -1,11 +1,15 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import UserItem from "../components/user/UserItem.vue";
-import { IUser } from "../stores/user";
-const tmpUser = ref({
-    userId: "123",
-    userName: "test",
-} as IUser);
+import { IUser, useUserStore } from "../stores/user";
+const userStore = useUserStore();
+
+const searchFriendList = ref([] as IUser[]);
+
+getSearchFriendList();
+async function getSearchFriendList() {
+    searchFriendList.value = await userStore.getSearchFriendList();
+}
 </script>
 
 <template>
@@ -15,7 +19,7 @@ const tmpUser = ref({
             <div class="add-friend__header__actions"></div>
         </div>
         <div class="add-friend__list">
-            <UserItem :user="tmpUser"></UserItem>
+            <UserItem :user="user" v-for="user of searchFriendList"></UserItem>
         </div>
         <div class="add-friend__footer">상태 설정</div>
     </div>

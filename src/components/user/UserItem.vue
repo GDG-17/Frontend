@@ -22,77 +22,11 @@ const props = defineProps<Props>();
 </template>
 
 <style lang="scss" scoped>
-.home {
-    position: relative;
-
+.user {
+    height: fit-content;
     display: flex;
-    flex-direction: column;
-    align-items: center;
 
-    width: 100%;
-    max-width: 720px;
-    height: 100%;
-
-    margin: 0 auto;
-
-    .home__header {
-        width: 100%;
-
-        display: flex;
-        align-items: center;
-
-        height: 80px;
-
-        padding: 10px;
-
-        background-color: $primary-color;
-    }
-    .home__list {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-
-        .user {
-            height: fit-content;
-            display: flex;
-
-            &__profile-image {
-                width: 50px;
-                height: 50px;
-
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
-                overflow: hidden;
-                border-radius: 100%;
-
-                margin-right: 10px;
-
-                img {
-                    width: 100%;
-                }
-            }
-
-            &__profile {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-
-                &__name {
-                }
-                &__description {
-                }
-            }
-        }
-    }
-
-    .home__cta-button {
-        position: absolute;
-        right: 40px;
-        bottom: 40px;
-
+    &__profile-image {
         width: 50px;
         height: 50px;
 
@@ -100,9 +34,25 @@ const props = defineProps<Props>();
         justify-content: center;
         align-items: center;
 
-        background-color: $sub-dark-gray;
-
+        overflow: hidden;
         border-radius: 100%;
+
+        margin-right: 10px;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    &__profile {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        &__name {
+        }
+        &__description {
+        }
     }
 }
 </style>
