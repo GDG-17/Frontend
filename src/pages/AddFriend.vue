@@ -3,6 +3,8 @@ import { ref } from "vue";
 import UserItem from "../components/user/UserItem.vue";
 import { IUser, useUserStore } from "../stores/user";
 import AppSmallButton from "../components/app/button/AppSmallButton.vue";
+import { mdiArrowLeft } from "@mdi/js";
+import AppIcon from "../components/app/AppIcon.vue";
 const userStore = useUserStore();
 
 const searchFriendList = ref([] as IUser[]);
@@ -16,8 +18,10 @@ async function getSearchFriendList() {
 <template>
     <div class="add-friend">
         <div class="add-friend__header">
-            <div class="add-friend__header__logo">앱 이름</div>
-            <div class="add-friend__header__actions"></div>
+            <router-link to="/" tag="div" class="add-friend__header__actions">
+                <AppIcon :path="mdiArrowLeft"></AppIcon>
+            </router-link>
+            <div class="add-friend__header__title">친구 추가하기</div>
         </div>
         <div class="add-friend__list">
             <UserItem :user="user" v-for="user of searchFriendList">
@@ -45,13 +49,22 @@ async function getSearchFriendList() {
         width: 100%;
 
         display: flex;
+        justify-content: space-between;
         align-items: center;
 
-        height: 80px;
+        height: 60px;
 
         padding: 10px;
 
-        background-color: $primary-color;
+        .add-friend__header__title {
+            width: 100%;
+            text-align: center;
+        }
+
+        .add-friend__header__actions {
+            position: absolute;
+            left: 0;
+        }
     }
     .add-friend__list {
         width: 100%;
