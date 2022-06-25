@@ -60,6 +60,9 @@ userStore.refreshFriendList();
 
     .home__list {
         width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
     }
 
     .home__cta-button {
@@ -67,8 +70,8 @@ userStore.refreshFriendList();
         right: 40px;
         bottom: 40px;
 
-        width: 50px;
-        height: 50px;
+        width: 46px;
+        height: 46px;
 
         display: flex;
         justify-content: center;
@@ -76,7 +79,7 @@ userStore.refreshFriendList();
 
         background-color: $sub-dark-gray;
 
-        border-radius: 100%;
+        border-radius: 7px;
     }
 }
 </style>

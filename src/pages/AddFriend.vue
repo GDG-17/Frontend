@@ -60,40 +60,6 @@ async function getSearchFriendList() {
         display: flex;
         flex-direction: column;
         gap: 5px;
-
-        .add-friend__list__item {
-            height: fit-content;
-            display: flex;
-
-            &__profile-image {
-                width: 50px;
-                height: 50px;
-
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
-                overflow: hidden;
-                border-radius: 100%;
-
-                margin-right: 10px;
-
-                img {
-                    width: 100%;
-                }
-            }
-
-            &__profile {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-
-                &__name {
-                }
-                &__description {
-                }
-            }
-        }
     }
 
     .add-friend__cta-button {
@@ -101,8 +67,8 @@ async function getSearchFriendList() {
         right: 40px;
         bottom: 40px;
 
-        width: 50px;
-        height: 50px;
+        width: 46px;
+        height: 46px;
 
         display: flex;
         justify-content: center;
@@ -110,7 +76,7 @@ async function getSearchFriendList() {
 
         background-color: $sub-dark-gray;
 
-        border-radius: 100%;
+        border-radius: 7px;
     }
 }
 </style>

@@ -34,7 +34,7 @@
         /* border-right: 2px solid none; */
 
         animation: spin 1s ease infinite;
-        border-radius: 100%;
+        border-radius: 7px;
     }
 }
 </style>

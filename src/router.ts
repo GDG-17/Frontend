@@ -17,6 +17,11 @@ const routes = [
         name: "Notice",
         component: () => import("./pages/Notice.vue"),
     },
+    {
+        path: "/change-status",
+        name: "ChangeStatus",
+        component: () => import("./pages/ChangeStatus.vue"),
+    },
 ];
 
 const router = createRouter({
