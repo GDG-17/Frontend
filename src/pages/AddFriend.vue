@@ -70,7 +70,7 @@ async function addFriend(targetUserId: string) {
 
         .add-friend__header__actions {
             position: absolute;
-            left: 0;
+            left: 20px;
         }
     }
     .add-friend__list {

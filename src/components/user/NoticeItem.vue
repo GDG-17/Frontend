@@ -16,6 +16,8 @@ const props = defineProps<Props>();
 
 <style lang="scss" scoped>
 .notice-item {
+    @include clickable();
+
     height: fit-content;
     display: flex;
     align-items: center;
@@ -23,6 +25,7 @@ const props = defineProps<Props>();
     padding: 16px 24px;
 
     background-color: $black;
+    border-bottom: 1px solid $charcoal;
 
     &__emoji {
         @include emoji-box();

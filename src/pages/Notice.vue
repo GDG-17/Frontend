@@ -54,7 +54,7 @@ userStore.refreshNoticeList();
 
         .notice__header__actions {
             position: absolute;
-            left: 0;
+            left: 20px;
         }
     }
     .notice__list {
