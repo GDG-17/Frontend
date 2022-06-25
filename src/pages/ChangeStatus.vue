@@ -222,7 +222,6 @@ async function submit(_emoji: string, _description: string) {
 
             padding: 16px 24px;
 
-            background-color: $black;
             border-bottom: 1px solid $charcoal;
 
             font-weight: 400;
@@ -236,7 +235,6 @@ async function submit(_emoji: string, _description: string) {
 
             padding: 16px 24px;
 
-            background-color: $black;
             border-bottom: 1px solid $charcoal;
 
             &__input {
@@ -310,8 +308,6 @@ async function submit(_emoji: string, _description: string) {
             align-items: center;
 
             padding: 16px 24px;
-
-            background-color: $black;
         }
     }
 }

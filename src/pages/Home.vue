@@ -8,6 +8,7 @@ import AppButton from "../components/app/button/AppButton.vue";
 import AppIcon from "../components/app/AppIcon.vue";
 import { mdiBell, mdiPlus } from "@mdi/js";
 import AppBottomSheet from "../components/app/bottom-sheet/AppBottomSheet.vue";
+import AppFlexibleButton from "../components/app/button/AppFlexibleButton.vue";
 
 const userStore = useUserStore();
 // userStore.createUser("테스트6");
@@ -40,7 +41,7 @@ const isShowUserDetail = ref(false);
                 "
             ></UserItem>
         </div>
-        <AppButton class="home__cta" @click="$router.push('/change-status')">상태 설정</AppButton>
+        <AppFlexibleButton style="height: fit-content; border-radius: 7px; margin: 16px" class="home__cta" @click="$router.push('/change-status')">상태 설정</AppFlexibleButton>
         <AppBottomSheet v-model="isShowUserDetail">
             <UserDetail :user="selectedUser"></UserDetail>
         </AppBottomSheet>

@@ -226,11 +226,11 @@ $partSize: 5em;
     }
 }
 .group-enter-active {
-    transition: 1s ease-out;
+    transition: 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .group-leave-active {
-    transition: 1s ease-out;
+    transition: 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .group-enter-from {
