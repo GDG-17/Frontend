@@ -12,8 +12,12 @@ const userStore = useUserStore();
         </div>
         <div class="change-status__list">
             <div class="change-status__list__item">
-                <div class="change-status__list__item__emoji"></div>
-                <p class="change-status__list__item__description"></p>
+                <div class="change-status__list__item__emoji">:)</div>
+                <p class="change-status__list__item__description">고객 상태 텍스트 입력</p>
+            </div>
+            <div class="change-status__list__item">
+                <div class="change-status__list__item__emoji">:)</div>
+                <p class="change-status__list__item__description">다음 이후 지우기<br />default 시간</p>
             </div>
         </div>
     </div>
@@ -47,8 +51,32 @@ const userStore = useUserStore();
     }
 
     .change-status__list {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+
+        padding: 10px 15px;
+
+        background-color: $sub-light-gray;
         .change-status__list__item {
+            display: flex;
+            align-items: center;
+
             &__emoji {
+                width: 46px;
+                height: 46px;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                overflow: hidden;
+                border-radius: 7px;
+
+                background-color: $sub-dark-gray;
+
+                margin-right: 10px;
             }
             &__description {
             }

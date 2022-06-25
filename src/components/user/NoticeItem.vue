@@ -22,16 +22,20 @@ const props = defineProps<Props>();
     display: flex;
     align-items: center;
 
+    padding: 10px 15px;
+
+    background-color: $sub-light-gray;
+
     &__profile-image {
-        width: 50px;
-        height: 50px;
+        width: 46px;
+        height: 46px;
 
         display: flex;
         justify-content: center;
         align-items: center;
 
         overflow: hidden;
-        border-radius: 100%;
+        border-radius: 7px;
 
         margin-right: 10px;
 
