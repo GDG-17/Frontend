@@ -2,19 +2,20 @@ import axios from "axios";
 import { defineStore } from "pinia";
 
 export interface IStatus {
-    userId: number;
+    userId?: number;
     emoji: string;
     description: string;
-    imageProfile: string;
     expiredAt: Date;
 }
 export interface IUser extends IStatus {
+    imageProfile: string;
     interesting: boolean;
 }
 
 export interface INotice {
     emoji: string;
-    text: string;
+    text?: string;
+    description?: string;
 }
 
 export const useUserStore = defineStore("userStore", {
@@ -25,16 +26,36 @@ export const useUserStore = defineStore("userStore", {
     }),
     actions: {
         async refreshFriendList() {
-            this.friendList = (await axios.get("/apis/friends?userId=test")).data as IUser[];
+            this.friendList = (
+                await axios.get("/apis/friends", {
+                    params: {
+                        userId: "test",
+                    },
+                })
+            ).data as IUser[];
         },
         async refreshNoticeList() {
-            this.noticeList = (await axios.get("/apis/users/notification?userId=test")).data as INotice[];
+            this.noticeList = (
+                await axios.get("/apis/users/notification", {
+                    params: {
+                        userId: "test",
+                    },
+                })
+            ).data as INotice[];
         },
-        async getSearchFriendList() {
-            return (await axios.get("/apis/friends?userId=test")).data as IUser[];
+        async getSearchFriendList(name?: string) {
+            return (
+                await axios.get("/apis/friends", {
+                    params: {
+                        userId: "test",
+                        f: "search",
+                        name,
+                    },
+                })
+            ).data as IUser[];
         },
         async updateStatus(status: IStatus) {
-            return (await axios.patch("/apis/users/me", status)).data as IUser[];
+            return (await axios.patch("/apis/users/me", { userId: this.user.userId, ...status })).data as IUser[];
         },
     },
 });

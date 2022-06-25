@@ -9,10 +9,8 @@ const props = defineProps<Props>();
 
 <template>
     <div class="notice-item">
-        <div class="notice-item__emoji">
-            <img src="https://www.w3schools.com/howto/img_avatar.png" alt="" />
-        </div>
-        <p class="notice-item__description">상태 텍스트</p>
+        <div class="notice-item__emoji">{{ notice.emoji }}</div>
+        <p class="notice-item__description">{{ notice.text || notice.description }}</p>
     </div>
 </template>
 

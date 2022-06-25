@@ -22,6 +22,7 @@ const props = defineProps<Props>();
 
 <style lang="scss" scoped>
 .user-item {
+    @include clickable;
     height: fit-content;
     display: flex;
     align-items: center;

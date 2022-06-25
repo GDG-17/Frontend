@@ -7,15 +7,30 @@ import AppBottomSheet from "../components/app/bottom-sheet/AppBottomSheet.vue";
 import AppInput from "../components/app/input/AppInput.vue";
 import NoticeItem from "../components/user/NoticeItem.vue";
 import AppIcon from "../components/app/AppIcon.vue";
-import { mdiCheck, mdiClose } from "@mdi/js";
+import { mdiArrowLeft, mdiCheck, mdiClose } from "@mdi/js";
+import moment from "moment";
 
 const userStore = useUserStore();
+
+const templateItemList = ref([
+    { emoji: "❤️", text: "테스트1" },
+    { emoji: "❤️", text: "테스트2" },
+    { emoji: "❤️", text: "테스트3" },
+]);
 
 const isShowSelectTime = ref(false);
 const isShowEmojiSelector = ref(false);
 
 const description = ref("");
 const selectedTime = ref([] as boolean[]);
+
+async function submit(emoji: string, description: string) {
+    await userStore.updateStatus({
+        emoji,
+        description,
+        expiredAt: moment().add(1, "day").toDate(),
+    });
+}
 </script>
 
 <template>
@@ -39,20 +54,17 @@ const selectedTime = ref([] as boolean[]);
                 <p class="change-status__list__item__description">다음 이후 지우기<br />default 시간</p>
             </div>
             <h2>유저 이름의 경우</h2>
-            <NoticeItem :notice="{ emoji: '1', text: '1' }"></NoticeItem>
-            <NoticeItem :notice="{ emoji: '1', text: '1' }"></NoticeItem>
-            <NoticeItem :notice="{ emoji: '1', text: '1' }"></NoticeItem>
-            <NoticeItem :notice="{ emoji: '1', text: '1' }"></NoticeItem>
-            <NoticeItem :notice="{ emoji: '1', text: '1' }"></NoticeItem>
-            <NoticeItem :notice="{ emoji: '1', text: '1' }"></NoticeItem>
+            <NoticeItem :notice="notice" v-for="notice of templateItemList"></NoticeItem>
         </div>
         <AppBottomSheet v-model="isShowEmojiSelector"> <EmojiSelector></EmojiSelector></AppBottomSheet>
     </div>
 
     <div class="change-status--time" v-else>
         <div class="change-status__header">
-            <div class="change-status__header__logo">앱 이름</div>
-            <div class="change-status__header__actions"></div>
+            <div class="change-status__header__actions" @click="isShowSelectTime = false">
+                <AppIcon :path="mdiArrowLeft"></AppIcon>
+            </div>
+            <div class="change-status__header__title">상태 설정</div>
         </div>
         <div class="change-status__list">
             <div
