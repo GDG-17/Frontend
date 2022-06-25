@@ -1,4 +1,8 @@
 export interface IUser {
     userId: string;
-    userName: string;
+    description: string;
+    emoji: string;
+    profileImage: string;
+    expiredAt: Date;
+    interesting: boolean;
 }

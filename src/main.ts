@@ -1,6 +1,9 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
-import { createPinia } from 'pinia'
+import { createApp } from "vue";
+import App from "./App.vue";
+import router from "./router";
+import { createPinia } from "pinia";
+import axios from "axios";
 
-createApp(App).use(router).use(createPinia()).mount('#app')
+axios.defaults.baseURL = "http://localhost:8080/";
+
+createApp(App).use(router).use(createPinia()).mount("#app");

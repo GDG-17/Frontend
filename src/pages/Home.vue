@@ -1,11 +1,16 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import UserItem from "../components/user/UserItem.vue";
-import { IUser } from "../stores/user";
 
 import axios from "axios";
+import { IUser } from "../stores/user";
 
-const friends = ref((await axios.get("http://localhost:8080/apis/friends?userId=test")).data);
+const friends = ref([] as IUser[]);
+
+reloadFriendList();
+async function reloadFriendList() {
+    friends.value = (await axios.get("/apis/friends?userId=test")).data as IUser[];
+}
 </script>
 
 <template>
