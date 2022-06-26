@@ -35,5 +35,12 @@ const props = defineProps<Props>();
         font-size: 14px;
         line-height: 16px;
     }
+
+    &:hover {
+        filter: brightness(0.9);
+    }
+    &:active {
+        filter: brightness(0.8);
+    }
 }
 </style>

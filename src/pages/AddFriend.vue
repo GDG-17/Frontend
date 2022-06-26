@@ -7,7 +7,11 @@ import { mdiArrowLeft, mdiCheck } from "@mdi/js";
 import AppIcon from "../components/app/AppIcon.vue";
 import AppInput from "../components/app/input/AppInput.vue";
 import AppFlexibleButton from "../components/app/button/AppFlexibleButton.vue";
+import { useRouter } from "vue-router";
+
 const userStore = useUserStore();
+
+const router = useRouter();
 
 const searchFriendList = ref([] as IUser[]);
 const search = ref("");
@@ -19,6 +23,7 @@ async function getSearchFriendList(name?: string) {
 async function addFriend(targetUserId: string) {
     await userStore.addFriends(targetUserId);
     await userStore.refreshFriendList();
+    router.push("/");
 }
 </script>
 
@@ -37,7 +42,7 @@ async function addFriend(targetUserId: string) {
         </AppInput>
         <div class="add-friend__list">
             <UserItem :user="user" v-for="user of searchFriendList" :isHideDescription="true" :isShowProfileImage="true">
-                <AppSmallButton @click="addFriend(user.userId!)" style="padding-left: 24px; padding-right: 24px">초대하기</AppSmallButton>
+                <AppSmallButton @click="addFriend(user.userId!)" style="padding-left: 24px; padding-right: 24px">추가하기</AppSmallButton>
             </UserItem>
         </div>
     </div>

@@ -35,6 +35,7 @@ const isShowUserDetail = ref(false);
             </div>
         </div>
         <div class="home__list">
+            <UserItem :user="userStore.user" style="background-color: #67d0b844" @click="$router.push('/change-status')"></UserItem>
             <UserItem
                 :user="user"
                 v-for="user of userStore.friendList"

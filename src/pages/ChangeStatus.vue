@@ -10,6 +10,7 @@ import { mdiArrowLeft, mdiCheck, mdiClockPlusOutline, mdiClose, mdiEmoticonHappy
 import moment from "moment";
 import { computed } from "@vue/reactivity";
 import SlideTransition from "../transitions/SlideTransition.vue";
+import { useRouter } from "vue-router";
 
 const userStore = useUserStore();
 
@@ -19,6 +20,8 @@ const templateItemList = ref([
     { emoji: "⚽", text: "운동하고 싶어요 - 1시간" },
     { emoji: "🏠", text: "집에서 쉬고 있어요 - 오늘" },
 ]);
+
+const router = useRouter();
 
 const isShowSelectTime = ref(false);
 const isShowEmojiSelector = ref(false);
@@ -60,6 +63,8 @@ async function submit(_emoji: string, _description: string) {
     });
 
     await userStore.refreshStatus(userStore.user.userId!);
+
+    await router.push("/");
 }
 </script>
 

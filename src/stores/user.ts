@@ -53,7 +53,7 @@ export const useUserStore = defineStore("userStore", {
                         name,
                     },
                 })
-            ).data as IUser[];
+            ).data.filter((i: any) => i.userId != this.user.userId) as IUser[];
         },
         async updateStatus(status: IStatus) {
             return (await axios.patch("/apis/users/me", { userId: this.user.userId, ...status })).data as IUser[];
@@ -73,8 +73,8 @@ export const useUserStore = defineStore("userStore", {
             return (
                 await axios.post("/apis/users/me", {
                     userName,
-                    emoji: "🍚",
-                    description: "Hello",
+                    emoji: "🙂",
+                    description: "설레요",
                     profileImage: "https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png",
                     expiredAt: new Date(),
                 })

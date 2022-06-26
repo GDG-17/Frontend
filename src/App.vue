@@ -11,6 +11,12 @@ const userStore = useUserStore();
 
 const isReady = ref(false);
 
+// userStore.createUser("박종훈");
+// userStore.createUser("김민준");
+// userStore.createUser("김정규");
+// userStore.createUser("이관형");
+// userStore.createUser("이예지");
+
 const router = useRouter();
 router.isReady().then(async () => {
     if (router.currentRoute.value.query.userId) await userStore.refreshStatus(router.currentRoute.value.query.userId as string);

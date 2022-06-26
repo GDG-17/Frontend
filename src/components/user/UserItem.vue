@@ -11,7 +11,7 @@ const props = defineProps<Props>();
 
 <template>
     <div class="user-item">
-        <div class="user-item__emoji" v-if="!isShowProfileImage">😀</div>
+        <div class="user-item__emoji" v-if="!isShowProfileImage">{{ user.emoji }}</div>
         <div class="user-item__emoji" v-else>
             <img :src="user.profileImage" alt="" />
         </div>
